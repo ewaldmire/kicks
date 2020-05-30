@@ -29,6 +29,8 @@ echo "192.168.25.42 captain.avengers.lan foreman" >> /etc/hosts
 sudo foreman-installer --enable-foreman-plugin-salt --enable-foreman-proxy-plugin-salt
 sudo systemctl stop firewalld
 sudo systemctl disable firewalld
+yum install -y mlocate
+updatedb
 
 ########################################################################
 #Everything Below Here are more "notes" to myself that a working script#
