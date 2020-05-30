@@ -18,7 +18,14 @@ sudo yum -y install https://yum.theforeman.org/releases/1.24/el7/x86_64/foreman-
 #sudo yum -y install foreman-release-scl
 sudo yum -y install foreman-installer
 echo "192.168.25.42 captain.avengers.lan foreman" >> /etc/hosts
-sudo foreman-installer --foreman-user=foremansvc --foreman-group=foremansvc --foreman-db-username=foremansvc --enable-foreman-plugin-salt --enable-foreman-proxy-plugin-salt
+sudo foreman-installer \
+	--foreman-user=foremansvc \
+	--foreman-group=foremansvc \
+	--foreman-db-username=foremansvc \ 
+	--foreman-pam-service=foremansvc \
+	--puppet-server-reports=foremansvc \
+	--enable-foreman-plugin-salt \
+	--enable-foreman-proxy-plugin-salt
 sudo systemctl stop firewalld
 sudo systemctl disable firewalld
 
