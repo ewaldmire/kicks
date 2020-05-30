@@ -1,0 +1,66 @@
+#!/bin/bash
+#
+#Foreman 2 Install for CentOS 7 w/ Salt Module
+#
+#Based on https://theforeman.org/manuals/2.1/quickstart_guide.html
+#To Do:  create variables for /etc/hosts entry
+#Create command to edit /etc/sudoers
+#Correctly setup firewall - don't just turn it off!
+#
+#
+#
+#Maybe consider going with 1.24.3 for better stability - 2.0 was a big change with multiple changes in architecture.
+#
+sudo yum -y install https://yum.puppet.com/puppet6-release-el-7.noarch.rpm
+sudo yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+#sudo yum -y install https://yum.theforeman.org/releases/2.1/el7/x86_64/foreman-release.rpm
+sudo yum -y install https://yum.theforeman.org/releases/1.24/el7/x86_64/foreman-release.rpm
+#sudo yum -y install foreman-release-scl
+sudo yum -y install foreman-installer
+echo "192.168.25.42 captain.avengers.lan foreman" >> /etc/hosts
+sudo foreman-installer --foreman-user=foremansvc --foreman-group=foremansvc --foreman-db-username=foremansvc --enable-foreman-plugin-salt --enable-foreman-proxy-plugin-salt
+sudo systemctl stop firewalld
+sudo systemctl disable firewalld
+
+########################################################################
+#Everything Below Here are more "notes" to myself that a working script#
+########################################################################
+
+####Add this to /etc/sudoers:
+## foreman-salt setup
+#Cmnd_Alias SALT = /usr/bin/salt, /usr/bin/salt-key
+#foreman-proxy ALL = (ALL) NOPASSWD: SALT
+#Defaults:foreman-proxy !requiretty
+
+
+#rest_cherrypy:
+#  port: 9191
+#  host: 0.0.0.0
+#  ssl_key: /etc/puppetlabs/puppet/ssl/private_keys/foreman.avengers.lan.pem
+#  ssl_crt: /etc/puppetlabs/puppet/ssl/certs/foreman.avengers.lan.pem
+
+
+#sudo yum install https://repo.saltstack.com/py3/redhat/salt-py3-repo-latest.el7.noarch.rpm
+#yum install -y salt-master
+#yum install -y salt-minion
+#yum install -y salt-api
+#yum install -y python-cherrypy
+
+#file /usr/bin/cherryd from install of 
+#python-cherrypy-3.2.2-4.el7.noarch conflicts with file from package 
+#python36-cherrypy-5.6.0-6.el7.noarch
+
+
+#salt-plugin:
+#tfm-rubygem-smart_proxy_salt <--- installed this and had things half working
+#tfm-rubygem-foreman_remote_execution <----later installed this and broke some stuff, then removed it and it removed the first one!!?
+
+#ln -s /opt/rh/rh-ruby25/root/usr/lib64/libruby.so.2.5 /lib64/libruby.so.2.5
+
+#systemctl start smart_proxy_dynflow_core
+#systemctl enable smart_proxy_dynflow_core
+
+#yum install -y tfm-rubygem-foreman-tasks
+
+
+#ln -s /opt/theforeman/tfm/root/usr/share/gems/gems/foreman-tasks-1.1.1/deploy/foreman-tasks.service /usr/lib/systemd/system/foreman-tasks.service
