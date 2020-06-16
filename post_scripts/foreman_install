@@ -77,4 +77,4 @@ updatedb
 
 
 ######
-#In foreman configure:  Go to Operating Systems and select Media and Partition Tables - then create host
+#In foreman configure:  Go to Operating Systems and select Media and Partition Tables, associate kickstart provisioning templates with CentOS 7 Defined OS, setup IPV4 subnet - then create host
