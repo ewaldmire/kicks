@@ -74,3 +74,7 @@ updatedb
 
 
 #ln -s /opt/theforeman/tfm/root/usr/share/gems/gems/foreman-tasks-1.1.1/deploy/foreman-tasks.service /usr/lib/systemd/system/foreman-tasks.service
+
+
+######
+#In foreman configure:  Go to Operating Systems and select Media and Partition Tables - then create host
