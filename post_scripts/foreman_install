@@ -2,7 +2,7 @@
 #
 #Foreman 2 Install for CentOS 7 w/ Salt Module
 #
-#Based on https://theforeman.org/manuals/2.1/quickstart_guide.html
+#Based on https://theforeman.org/manuals/2.0/quickstart_guide.html
 #To Do:  create variables for /etc/hosts entry
 #Create command to edit /etc/sudoers
 #Correctly setup firewall - don't just turn it off!
@@ -13,9 +13,9 @@
 #
 yum -y install https://yum.puppet.com/puppet6-release-el-7.noarch.rpm
 yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-yum -y install https://yum.theforeman.org/releases/2.1/el7/x86_64/foreman-release.rpm
+yum -y install https://yum.theforeman.org/releases/2.0/el7/x86_64/foreman-release.rpm
 #yum -y install https://yum.theforeman.org/releases/1.24/el7/x86_64/foreman-release.rpm
-#yum -y install foreman-release-scl
+yum -y install foreman-release-scl
 yum -y install foreman-installer
 echo "192.168.25.42 captain.avengers.lan foreman" >> /etc/hosts
 #sudo foreman-installer \
