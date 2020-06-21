@@ -10,19 +10,19 @@ hammer -u <username> -p <password> os create \
 #Need to find OS ID and Template IDs
 hammer -u <username> -p <password> template list --search "Kickstart default"
 
+#Update the Finish template
+hammer -u <username> -p <password> os set-default-template \
+--id 10 \
+--provisioning-template-id 51
+
 #Update the Provisioning template
 hammer -u <username> -p <password> os set-default-template \
 --id 10 \
 --provisioning-template-id 51 #Kickstart default
 
-Update the Default Templates
+#Update the PXELinux template
 hammer -u <username> -p <password> os set-default-template \
---id OS ID \
---provisioning-template-id 51
-
-Update the Default Templates
-hammer -u <username> -p <password> os set-default-template \
---id OS ID \
+--id 10 \
 --provisioning-template-id 51
 
 #hammer -u <username> -p <password> template add-operatingsystem \
