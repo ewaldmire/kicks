@@ -7,6 +7,13 @@ hammer -u <username> -p <password> os create \
 --media "CentOS 8 mirror" \
 --provisioning-templates "Kickstart default,Kickstart default finish,Kickstart default PXELinux"
 
+#Need to find OS ID and Template IDs
+
+#Update the Default Templates
+hammer -u <username> -p <password> os set-default-template \
+--id OS ID \
+--provisioning-template-id TPL ID
+
 #hammer -u <username> -p <password> template add-operatingsystem \
 #--name "Kickstart default" \
 #--operatingsystem "CentOS 8"
