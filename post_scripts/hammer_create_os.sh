@@ -1,4 +1,4 @@
-!#/bin/sh
+#!/bin/bash
 
 #Configure passwordless Hammer here: https://access.redhat.com/solutions/1612123
 #Basically - update username & password in: ~/.hammer/cli.modules.d/foreman.yml
