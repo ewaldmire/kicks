@@ -8,6 +8,7 @@ hammer -u <username> -p <password> os create \
 --provisioning-templates "Kickstart default,Kickstart default finish,Kickstart default PXELinux"
 
 #Need to find OS ID and Template IDs
+hammer -u <username> -p <password> template list --search "Kickstart default"
 
 #Update the Provisioning template
 hammer -u <username> -p <password> os set-default-template \
