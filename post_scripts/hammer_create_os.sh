@@ -9,10 +9,20 @@ hammer -u <username> -p <password> os create \
 
 #Need to find OS ID and Template IDs
 
-#Update the Default Templates
+#Update the Provisioning template
+hammer -u <username> -p <password> os set-default-template \
+--id 10 \
+--provisioning-template-id 51 #Kickstart default
+
+Update the Default Templates
 hammer -u <username> -p <password> os set-default-template \
 --id OS ID \
---provisioning-template-id TPL ID
+--provisioning-template-id 51
+
+Update the Default Templates
+hammer -u <username> -p <password> os set-default-template \
+--id OS ID \
+--provisioning-template-id 51
 
 #hammer -u <username> -p <password> template add-operatingsystem \
 #--name "Kickstart default" \
