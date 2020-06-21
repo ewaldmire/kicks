@@ -17,16 +17,6 @@ FNSHID=$(hammer --csv template list --search 'name = "Kickstart default finish"'
 PROVID=$(hammer --csv template list --search 'name = "Kickstart default"' | grep -v Id | awk -F, {'print $1'})
 PXELID=$(hammer --csv template list --search 'name = "Kickstart default PXELinux"' | grep -v Id | awk -F, {'print $1'})
 
-# PXEID=$(hammer --csv template list | grep 'Kickstart default PXELinux' | awk -F, {'print $1'})
-# SATID=$(hammer --csv template list | grep 'Satellite Kickstart Default' | awk -F, {'print $1'})
-# for i in $(hammer --csv os list | awk -F, {'print $1'} | grep -vi '^ID')
-#  do
-#    hammer template add-operatingsystem --id="${PXEID}" --operatingsystem-id="${i}"
-#    hammer os set-default-template --id="${i}" --config-template-id="${PXEID}"
-#    hammer os add-config-template --id="${i}" --config-template-id="${SATID}"
-#    hammer os set-default-template --id="${i}" --config-template-id="${SATID}"
-#   done
-
 #Update the Finish template
 hammer os set-default-template \
 --id $OSID \
@@ -41,15 +31,3 @@ hammer os set-default-template \
 hammer os set-default-template \
 --id $OSID \
 --provisioning-template-id $PXELID #Kickstart default PXELinux
-
-#hammer template add-operatingsystem \
-#--name "Kickstart default" \
-#--operatingsystem "CentOS 8"
-
-#hammer template add-operatingsystem \
-#--name "Kickstart default finish" \
-#--operatingsystem "CentOS 8"
-
-#hammer template add-operatingsystem \
-#--name "Kickstart default PXELinux" \
-#--operatingsystem "CentOS 8"
