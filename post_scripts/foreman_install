@@ -26,7 +26,7 @@ echo "192.168.25.42 captain.avengers.lan foreman" >> /etc/hosts
 #	--puppet-server-reports=foremansvc \
 #	--enable-foreman-plugin-salt \
 #	--enable-foreman-proxy-plugin-salt
-foreman-installer --foreman-proxy-dhcp=true --enable-foreman-plugin-salt --enable-foreman-proxy-plugin-salt
+foreman-installer --enable-foreman-plugin-salt --enable-foreman-proxy-plugin-salt #--foreman-proxy-dhcp=true 
 systemctl stop firewalld
 systemctl disable firewalld
 yum install -y mlocate
