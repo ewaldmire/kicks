@@ -42,7 +42,7 @@ hammer os set-default-template \
 #hammer domain create --name $DOMNAME #Not needed - default already created upon install
 
 #Find Domain ID:
-DOMID=$(hammer --csv domain list --search 'name = "$DOMNAME"' | grep -v Id | awk -F, {'print $1'})
+DOMID=$(hammer --csv domain list --search 'name = '$DOMNAME'' | grep -v Id | awk -F, {'print $1'})
 
 #Create a Subnet w/ Default TFTP Proxy
 hammer subnet create --name MyNetwork --network 192.168.1.0 --mask 255.255.255.0 --domain-ids=$DOMID --tftp-id=1
