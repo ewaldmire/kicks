@@ -3,6 +3,11 @@
 #Configure passwordless Hammer here: https://access.redhat.com/solutions/1612123
 #Basically - update username & password in: ~/.hammer/cli.modules.d/foreman.yml
 
+#Need to
+#1) Prompt for Domain
+DOMNAME="mynetwork.com"
+#2) Prompt for Subnet
+
 hammer os create \
 --name CentOS \
 --major 8 \
@@ -33,7 +38,10 @@ hammer os set-default-template \
 --provisioning-template-id $PXELID #Kickstart default PXELinux
 
 #Create a Domain
-hammer domain create --name mynetwork.com
+hammer domain create --name $DOMNAME
 
-#Create a Subnet
-hammer subnet create --name MyNetwork --network 192.168.1.0 --mask 255.255.255.0
+#Find Domain ID:
+DOMID=$(hammer --csv domain list --search 'name = "$DOMNAME"' | grep -v Id | awk -F, {'print $1'})
+
+#Create a Subnet w/ Default TFTP Proxy
+hammer subnet create --name MyNetwork --network 192.168.1.0 --mask 255.255.255.0 --domain-ids=$DOMID --tftp-id=1
