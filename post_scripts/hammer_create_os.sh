@@ -32,5 +32,8 @@ hammer os set-default-template \
 --id $OSID \
 --provisioning-template-id $PXELID #Kickstart default PXELinux
 
+#Create a Domain
+hammer domain create --name mynetwork.com
+
 #Create a Subnet
 hammer subnet create --name MyNetwork --network 192.168.1.0 --mask 255.255.255.0
