@@ -39,7 +39,7 @@ hammer os set-default-template \
 --provisioning-template-id $PXELID #Kickstart default PXELinux
 
 #Create a Domain
-hammer domain create --name $DOMNAME
+#hammer domain create --name $DOMNAME #Not needed - default already created upon install
 
 #Find Domain ID:
 DOMID=$(hammer --csv domain list --search 'name = "$DOMNAME"' | grep -v Id | awk -F, {'print $1'})
