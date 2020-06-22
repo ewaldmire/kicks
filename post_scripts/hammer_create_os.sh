@@ -2,6 +2,7 @@
 
 #Configure passwordless Hammer here: https://access.redhat.com/solutions/1612123
 #Basically - update username & password in: ~/.hammer/cli.modules.d/foreman.yml
+#For more ideas, see:  https://blog.fite.cat/tag/hammer/
 
 #Need to
 #1) Prompt for Domain
