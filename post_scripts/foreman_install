@@ -8,16 +8,15 @@
 #Correctly setup firewall - don't just turn it off!
 #
 #
-#
-#Maybe consider going with 1.24.3 for better stability - 2.0 was a big change with multiple changes in architecture.
-#
 yum -y install https://yum.puppet.com/puppet6-release-el-7.noarch.rpm
 yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum -y install https://yum.theforeman.org/releases/2.0/el7/x86_64/foreman-release.rpm
-#yum -y install https://yum.theforeman.org/releases/1.24/el7/x86_64/foreman-release.rpm
 yum -y install foreman-release-scl
 yum -y install foreman-installer
 echo "192.168.25.42 captain.avengers.lan foreman" >> /etc/hosts
+######################################
+#Install Foreman with different User #
+######################################
 #sudo foreman-installer \
 #	--foreman-user=foremansvc \
 #	--foreman-group=foremansvc \
@@ -26,7 +25,15 @@ echo "192.168.25.42 captain.avengers.lan foreman" >> /etc/hosts
 #	--puppet-server-reports=foremansvc \
 #	--enable-foreman-plugin-salt \
 #	--enable-foreman-proxy-plugin-salt
-foreman-installer --enable-foreman-plugin-salt --enable-foreman-proxy-plugin-salt #--foreman-proxy-dhcp=true 
+######################################
+#Install Foreman with Salt plugin    #
+######################################
+#foreman-installer --enable-foreman-plugin-salt --enable-foreman-proxy-plugin-salt #--foreman-proxy-dhcp=true 
+######################################
+#Install Foreman without Puppet      #
+######################################
+foreman-installer--no-enable-puppet --foreman-proxy-puppet false --foreman-proxy-puppetca false --foreman-proxy-content-puppet false
+
 systemctl stop firewalld
 systemctl disable firewalld
 yum install -y mlocate
