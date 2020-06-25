@@ -46,3 +46,12 @@ DOMID=$(hammer --csv domain list --search 'name = '$DOMNAME'' | grep -v Id | awk
 
 #Create a Subnet w/ Default TFTP Proxy
 hammer subnet create --name MyNetwork --network 192.168.1.0 --mask 255.255.255.0 --domain-ids=$DOMID --tftp-id=1
+
+#Create a CentOS 8 Hostgroup
+MEDID=$(hammer --csv medium list | grep 'CentOS 8 mirror' | awk -F, {'print $1'})
+# ENVID=$(hammer --csv environment list | grep rhel_7_server_x86_64  | grep -i dev | grep -v epel | awk -F, {'print $1'})  #DONT CARE ABOUT THIS... RIGHT?
+PARTID=$(hammer --csv partition-table list | grep 'Kickstart default,Redhat' | awk -F, {'print $1'})
+OSID=$(hammer --csv os list | grep 'CentOS 8,,Redhat' | awk -F, {'print $1'})
+# CAID=1 #DONT CARE ABOUT THIS... RIGHT?
+# PROXYID=1 #DONT CARE ABOUT THIS... RIGHT?
+hammer hostgroup create --architecture="x86_64" --domain="${DOMNAME}" --medium-id="${MEDID}" --name="CentOS 8 HostGroup" --subnet="${NETNAME}" --ptable-id="${PARTID}" --operatingsystem-id="${OSID}" # --environment-id="${ENVID}" --puppet-ca-proxy-id="${CAID}" --puppet-proxy-id="${PROXYID}"
