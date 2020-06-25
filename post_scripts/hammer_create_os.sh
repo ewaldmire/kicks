@@ -8,6 +8,7 @@
 #1) Prompt for Domain
 DOMNAME="mynetwork.com"
 #2) Prompt for Subnet
+SUBNAME="MyNetwork"
 
 hammer os create \
 --name CentOS \
@@ -45,7 +46,7 @@ hammer os set-default-template \
 DOMID=$(hammer --csv domain list --search 'name = '$DOMNAME'' | grep -v Id | awk -F, {'print $1'})
 
 #Create a Subnet w/ Default TFTP Proxy
-hammer subnet create --name MyNetwork --network 192.168.1.0 --mask 255.255.255.0 --domain-ids=$DOMID --tftp-id=1
+hammer subnet create --name "${SUBNAME}" --network 192.168.1.0 --mask 255.255.255.0 --domain-ids=$DOMID --tftp-id=1
 
 #Create a CentOS 8 Hostgroup
 MEDID=$(hammer --csv medium list | grep 'CentOS 8 mirror' | awk -F, {'print $1'})
@@ -54,4 +55,4 @@ PARTID=$(hammer --csv partition-table list | grep 'Kickstart default,Redhat' | a
 OSID=$(hammer --csv os list | grep 'CentOS 8,,Redhat' | awk -F, {'print $1'})
 # CAID=1 #DONT CARE ABOUT THIS... RIGHT?
 # PROXYID=1 #DONT CARE ABOUT THIS... RIGHT?
-hammer hostgroup create --architecture="x86_64" --domain="${DOMNAME}" --medium-id="${MEDID}" --name="CentOS 8 HostGroup" --subnet="${NETNAME}" --ptable-id="${PARTID}" --operatingsystem-id="${OSID}" # --environment-id="${ENVID}" --puppet-ca-proxy-id="${CAID}" --puppet-proxy-id="${PROXYID}"
+hammer hostgroup create --architecture="x86_64" --domain="${DOMNAME}" --medium-id="${MEDID}" --name="CentOS 8 HostGroup" --subnet="${NETNAME}" --partition-table-id="${PARTID}" --operatingsystem-id="${OSID}" --subnet="${SUBNAME}" # --environment-id="${ENVID}" --puppet-ca-proxy-id="${CAID}" --puppet-proxy-id="${PROXYID}"
