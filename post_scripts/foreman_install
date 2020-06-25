@@ -32,7 +32,7 @@ echo "192.168.25.42 captain.avengers.lan foreman" >> /etc/hosts
 ######################################
 #Install Foreman without Puppet      #
 ######################################
-foreman-installer--no-enable-puppet --foreman-proxy-puppet false --foreman-proxy-puppetca false --foreman-proxy-content-puppet false
+foreman-installer --no-enable-puppet --foreman-proxy-puppet false --foreman-proxy-puppetca false --foreman-proxy-content-puppet false
 
 systemctl stop firewalld
 systemctl disable firewalld
