@@ -40,6 +40,8 @@ systemctl disable firewalld
 yum install -y mlocate
 updatedb
 
+curl -O https://raw.githubusercontent.com/ewaldmire/kicks/master/post_scripts/hammer_create_os.sh
+
 ########################################################################
 #Everything Below Here are more "notes" to myself that a working script#
 ########################################################################
