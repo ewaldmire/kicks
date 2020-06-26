@@ -4,6 +4,8 @@
 #Basically - update username & password in: ~/.hammer/cli.modules.d/foreman.yml
 #For more ideas, see:  https://blog.fite.cat/tag/hammer/
 
+#Look into if I can NOT setup the subnet after turning off DHCP stuffs with this:  https://access.redhat.com/solutions/3520211
+
 #Need to
 #1) Prompt for Domain
 DOMNAME="mynetwork.com"
