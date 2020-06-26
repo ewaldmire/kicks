@@ -10,6 +10,9 @@ DOMNAME="mynetwork.com"
 #2) Prompt for Subnet
 SUBNAME="MyNetwork"
 
+##################
+#CentOS 8        #
+##################
 hammer os create \
 --name CentOS \
 --major 8 \
@@ -38,6 +41,42 @@ hammer os set-default-template \
 hammer os set-default-template \
 --id $OSID \
 --provisioning-template-id $PXELID #Kickstart default PXELinux
+
+##################
+#Ubuntu 18.04 LTS#
+##################
+hammer os create \
+--name Ubuntu \
+--release-name bionic \
+--major 18 \
+--minor 04 \
+--description "Ubuntu 18.04 LTS" \
+--architectures x86_64 \
+--partition-tables "Preseed default" \
+--media "Ubuntu mirror" \
+--provisioning-templates "Preseed default,Preseed default finish,Preseed default PXELinux"
+
+#Find and set OS and Template IDs
+OSID=$(hammer --csv os list --search 'title = "Ubuntu 18.04 LTS"' | grep -v Id | awk -F, {'print $1'})
+FNSHID=$(hammer --csv template list --search 'name = "Preseed default finish"' | grep -v Id | awk -F, {'print $1'})
+PROVID=$(hammer --csv template list --search 'name = "Preseed default"' | grep -v Id | awk -F, {'print $1'})
+PXELID=$(hammer --csv template list --search 'name = "Preseed default PXELinux"' | grep -v Id | awk -F, {'print $1'})
+
+#Update the Finish template
+hammer os set-default-template \
+--id $OSID \
+--provisioning-template-id $FNSHID #Preseed default finish
+
+#Update the Provisioning template
+hammer os set-default-template \
+--id $OSID \
+--provisioning-template-id $PROVID #Preseed default
+
+#Update the PXELinux template
+hammer os set-default-template \
+--id $OSID \
+--provisioning-template-id $PXELID #Preseed default PXELinux
+###########################################
 
 #Create a Domain
 #hammer domain create --name $DOMNAME #Not needed - default already created upon install
