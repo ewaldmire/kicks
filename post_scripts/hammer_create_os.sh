@@ -6,6 +6,8 @@
 
 #Look into if I can NOT setup the subnet after turning off DHCP stuffs with this:  https://access.redhat.com/solutions/3520211
 
+#Need to add hammer command to change OpenSuse repo from download.opensuse.org to rsync.opensuse.org - the former no longer works but is the foreman default.
+
 #Need to
 #1) Prompt for Domain
 DOMNAME="mynetwork.com"
