@@ -35,6 +35,8 @@ systemctl enable salt-minion
 systemctl start salt-minion
 #Install Google Chrome
 dnf install -y https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+#Install Slack
+dnf install -y https://downloads.slack-edge.com/linux_releases/slack-4.11.3-0.1.fc21.x86_64.rpm
 #Install Zoom
 dnf install -y https://zoom.us/client/latest/zoom_x86_64.rpm
 #Install Microsoft Teams
