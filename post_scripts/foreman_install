@@ -26,6 +26,17 @@ echo "192.168.25.42 captain.avengers.lan foreman" >> /etc/hosts
 #	--enable-foreman-plugin-salt \
 #	--enable-foreman-proxy-plugin-salt
 ######################################
+#Install Foreman with DHCP enabled   #
+######################################
+#foreman-installer \
+#  --enable-foreman-proxy \
+#  --foreman-proxy-dhcp=true \
+#  --foreman-proxy-dhcp-interface=enp1s0 \
+#  --foreman-proxy-dhcp-gateway=192.168.25.1 \
+#  --foreman-proxy-dhcp-range="192.168.25.101 192.168.25.29" \
+#  --foreman-proxy-dhcp-nameservers="192.168.25.55,192.168.25.1" \
+#  --enable-foreman-plugin-dhcp-browser
+######################################
 #Install Foreman with Salt plugin    #
 ######################################
 #foreman-installer --enable-foreman-plugin-salt --enable-foreman-proxy-plugin-salt #--foreman-proxy-dhcp=true 
