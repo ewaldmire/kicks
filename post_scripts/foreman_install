@@ -8,6 +8,10 @@
 #Correctly setup firewall - don't just turn it off!
 #
 #
+#When it's done you should be able to find the password here:
+#/etc/foreman-installer/scenarios.d/foreman-answers.yaml
+#/root/.hammer/cli.modules.d/foreman.yml
+#
 yum -y install https://yum.puppet.com/puppet6-release-el-7.noarch.rpm
 yum -y install http://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
 yum -y install https://yum.theforeman.org/releases/2.0/el7/x86_64/foreman-release.rpm
