@@ -30,16 +30,19 @@ echo "192.168.25.42 captain.avengers.lan foreman" >> /etc/hosts
 #	--enable-foreman-plugin-salt \
 #	--enable-foreman-proxy-plugin-salt
 ######################################
-#Install Foreman with DHCP enabled   #
+#Install Foreman with DHCP and TFTP enabled   #
 ######################################
-#foreman-installer \
-#  --enable-foreman-proxy \
-#  --foreman-proxy-dhcp=true \
-#  --foreman-proxy-dhcp-interface=enp1s0 \
-#  --foreman-proxy-dhcp-gateway=192.168.25.1 \
-#  --foreman-proxy-dhcp-range="192.168.25.101 192.168.25.29" \
-#  --foreman-proxy-dhcp-nameservers="192.168.25.55,192.168.25.1" \
-#  --enable-foreman-plugin-dhcp-browser
+foreman-installer \
+  --enable-foreman-proxy \
+  --foreman-proxy-dhcp=true \
+  --foreman-proxy-dhcp-interface=enp1s0 \
+  --foreman-proxy-dhcp-gateway=192.168.25.1 \
+  --foreman-proxy-dhcp-range="192.168.25.101 192.168.25.149" \
+  --foreman-proxy-dhcp-nameservers="192.168.25.55,192.168.25.1" \
+  --enable-foreman-plugin-dhcp-browser \ 
+  --foreman-proxy-tftp true
+### Maybe add --foreman-proxy-tftp-servername $(hostname)
+### See https://access.redhat.com/solutions/2832531
 ######################################
 #Install Foreman with Salt plugin    #
 ######################################
