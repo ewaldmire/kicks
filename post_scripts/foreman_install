@@ -39,6 +39,7 @@ foreman-installer \
   --foreman-proxy-dhcp-gateway=192.168.25.1 \
   --foreman-proxy-dhcp-range="192.168.25.101 192.168.25.149" \
   --foreman-proxy-dhcp-nameservers="192.168.25.55,192.168.25.1" \
+  --foreman-proxy-dhcp-search-domains="foreman.lan" \
   --enable-foreman-plugin-dhcp-browser \
   --foreman-proxy-tftp true
 ### Maybe add --foreman-proxy-tftp-servername $(hostname)
