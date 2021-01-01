@@ -54,6 +54,9 @@ foreman-installer \
 foreman-installer --foreman-proxy-dhcp-managed false # --no-enable-puppet --foreman-proxy-puppet false --foreman-proxy-puppetca false --no-enable-foreman-proxy #Doesn't work
 #Also need to try adding:  --foreman-admin-username admin  --foreman-admin-password {Enter_Password}
 
+#Install foreman-maintain too (for backups and ??)
+dnf install rubygem-foreman_maintain rubygem-foreman_maintain-doc -y
+
 systemctl stop firewalld
 systemctl disable firewalld
 yum install -y mlocate
