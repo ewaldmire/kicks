@@ -81,6 +81,41 @@ hammer os set-default-template \
 --provisioning-template-id $PXELID #Kickstart default PXELinux
 
 ##################
+#Ubuntu 20.04 LTS#
+##################
+hammer os create \
+--name Ubuntu \
+--release-name focal \
+--major 20 \
+--minor 04 \
+--description "Ubuntu 20.04 LTS" \
+--architectures x86_64 \
+--partition-tables "Preseed default" \
+--media "Ubuntu mirror" \
+--provisioning-templates "Preseed default,Preseed default finish,Preseed default PXELinux"
+
+OSID=$(hammer --csv os list --search 'title = "Ubuntu 20.04 LTS"' | grep -v Id | awk -F, {'print $1'})
+FNSHID=$(hammer --csv template list --search 'name = "Preseed default finish"' | grep -v Id | awk -F, {'print $1'})
+PROVID=$(hammer --csv template list --search 'name = "Preseed default"' | grep -v Id | awk -F, {'print $1'})
+PXELID=$(hammer --csv template list --search 'name = "Preseed default PXELinux"' | grep -v Id | awk -F, {'print $1'})
+
+#Update the Finish template
+hammer os set-default-template \
+--id $OSID \
+--provisioning-template-id $FNSHID #Preseed default finish
+
+#Update the Provisioning template
+hammer os set-default-template \
+--id $OSID \
+--provisioning-template-id $PROVID #Preseed default
+
+#Update the PXELinux template
+hammer os set-default-template \
+--id $OSID \
+--provisioning-template-id $PXELID #Preseed default PXELinux
+
+
+##################
 #Ubuntu 18.04 LTS#
 ##################
 hammer os create \
